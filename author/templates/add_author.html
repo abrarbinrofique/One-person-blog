@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div style='width:50%;margin:auto;padding:auto; margin-top:50px'>
+
+    <form action='' method='POST'>
+
+        {% load crispy_forms_tags %}
+        {% csrf_token %}
+        {{form|crispy}}
+    
+
+        <input class='btn btn-primary jusify-content-end' type='submit' value='submit'>
+
+    </form>
+    
+
+</div>
+
+{% endblock %}
