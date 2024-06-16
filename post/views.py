@@ -11,6 +11,7 @@ def addpost(request):
         if form.is_valid():
             form.save()
             print(form.cleaned_data)
+            return redirect ('profile')
 
     else:
         form=newpost()
@@ -36,7 +37,7 @@ def editpost(request,id):
 def deletepost(request,id):
     post=Post.objects.get(pk=id).delete()
 
-    return redirect('home')
+    return redirect('profile')
 
    
     

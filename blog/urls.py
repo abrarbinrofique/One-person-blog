@@ -24,6 +24,6 @@ urlpatterns = [
     path('author/',include('author.urls')),
     path('catagory/',include('catagory.urls')),
     path('post/',include('post.urls')),
-    path('profiles/',include('profiles.urls')),
-    path('',views.home,name='home'),
+    path('',views.blogerland,name='base'),
+   
 ]

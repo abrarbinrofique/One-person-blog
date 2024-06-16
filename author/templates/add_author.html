@@ -1,19 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
+<div class='bg-warning' style='width:50%;margin:auto;padding:50px; margin-top:50px' >
 <div style='width:50%;margin:auto;padding:auto; margin-top:50px'>
+    <h2 class='justify-content-center text-center'> <b> Sign in as an Author </b> </h2>
+    {% load crispy_forms_tags %}
+    <form action='' method='POST' class='row d-flex justify-content-center' novalidate>
 
-    <form action='' method='POST'>
-
-        {% load crispy_forms_tags %}
+        
+       
         {% csrf_token %}
-        {{form|crispy}}
-    
+        {% if form.non_field_errors %}
+        {% for i in form.non_field_errors %}
+        <p class='bg-danger text-light'>{{i}}</p>
+        {% endfor %}
+        {% endif %} 
+       <!-- {{form|crispy}} -->
 
-        <input class='btn btn-primary jusify-content-end' type='submit' value='submit'>
+       {% for fm in form %}
+       {{fm.label_tag}}
+       {{fm}}
+       {{ fm.errors| striptags}}
+       {% endfor %}
+        <input style='width:100%;display: flex; flex-direction: column; align-items: center;' class='btn btn-primary mt-4' type='submit' value='SIGN IN'>
 
     </form>
     
 
 </div>
-
+</div>
 {% endblock %}

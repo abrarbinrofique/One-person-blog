@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div style='margin:100px;' class='d-flex flex-wrap justify-content-center  p-100px'>
+
+
+  
+
+    {% if data %}
+
+    {% for i in data %}
+
+    <div style=' display: flex; flex-wrap: wrap; margin:10px;' class="row d-flex justify-content-center col-lg-3 col-md-4 col-sm-6 ">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">{{i.name}}</h2>
+          <p class="card-text">{{i.content}}</p>
+          <p class="card-text">Author: <b>{{i.author}}</b></p>
+          <p>
+            Catagoury:
+            {% for j in i.catagory.all %}
+
+            <a href="#" class="btn btn-dark">{{j}}</a>
+
+            {% endfor %}
+          </p>
+         
+          <a href="{% url 'edit' i.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'delete' i.id %}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+
+  
+    {% endfor %}
+
+    {%else%}
+    <h3>You  Dont Post yet </h3>
+    {% endif %}
+  </div>
+
+
+{% endblock content %}
