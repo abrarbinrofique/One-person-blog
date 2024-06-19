@@ -3,16 +3,45 @@
 {% block content %}
 
 
-<div style='margin:100px;' class='d-flex flex-wrap justify-content-center  p-100px'>
+<div class='d-flex flex-wrap'>
+
+  
+
+<div class='col-2 justify-content-center  p-3 m-5'>
+  <h2>Choose your favourite Catagory</h2>
+
+  {% if mod %}
+
+  {% for i in mod %}
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" checked="check"  name="Catagory" id={{i.id}} >
+    <label class="form-check-label" for= {{i.id}} >
+      <a style="text-decoration:None" href="{% url 'catagory_wise_post' i.slug %}"> {{i.name}}</a> 
+    </label>
+  </div>
 
 
+
+  {% endfor %}
+
+  {% endif %}
+  <h4 class="ml-0">{{data|length}} posts available</h4>
+
+
+</div>
+<div style='margin:100px;' class='col-8 d-flex flex-wrap  justify-content-center'>
+
+  
   
 
     {% if data %}
 
+   
+
     {% for i in data %}
 
-    <div style=' display: flex; flex-wrap: wrap; margin:10px;' class="row d-flex justify-content-center col-lg-3 col-md-4 col-sm-6 ">
+    <div style=' display: flex; flex-wrap: wrap; margin:10px;' class="row d-flex flex-wrap justify-content-center col-lg-3 col-md-4 col-sm-6 ">
       <div class="card">
         <div class="card-body">
           <h2 class="card-title">{{i.name}}</h2>
@@ -26,20 +55,30 @@
 
             {% endfor %}
           </p>
-         
+          
+        
+         {% if i.author == request.user %}
+           
           <a href="{% url 'edit' i.id %}" class="btn btn-primary">Edit</a>
           <a href="{% url 'delete' i.id %}" class="btn btn-danger">Delete</a>
+          
+          {% endif %}
+         
         </div>
       </div>
     </div>
+    
 
   
     {% endfor %}
 
     {%else%}
-    <h3>You  Dont Post yet </h3>
+    <div style=' margin:10px;' class="row  justify-content-center col-lg-3 col-md-4 col-sm-6 ">
+      <h3>There is no posts available </h3>
+    </div>
+  
     {% endif %}
   </div>
-
+</div> 
 
 {% endblock content %}

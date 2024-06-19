@@ -9,6 +9,7 @@ def addpost(request):
     if request.method=='POST':
         form=newpost(request.POST)
         if form.is_valid():
+            form.instance.author=request.user
             form.save()
             print(form.cleaned_data)
             return redirect ('profile')
@@ -27,7 +28,7 @@ def editpost(request,id):
         form=newpost(request.POST,instance=post) 
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('profile')
 
    
     return render (request,'addpost.html',{'form':form})

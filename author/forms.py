@@ -10,4 +10,15 @@ class Author(UserCreationForm):
     class Meta:
         model=User
         fields=['username','first_name','last_name','email']
-  
+       
+
+
+
+class editinfo(UserChangeForm):
+     password=None
+     class Meta:
+        model=User
+        fields=['username','first_name','last_name','email']
+
+
+

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='bg-dark text-light' style='width:50%;margin:auto;padding:50px; margin-top:50px' >
+<div style='width:50%;margin:auto;padding:auto; margin-top:50px'>
+    <h2 class='justify-content-center text-center'> <b> Change your information </b> </h2>
+    {% load crispy_forms_tags %}
+    <form action='' method='POST' class='row d-flex justify-content-center' novalidate>
+
+        
+       
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        {% for i in form.non_field_errors %}
+        <p class='bg-danger text-light'>{{i}}</p>
+        {% endfor %}
+        {% endif %} 
+       <!-- {{form|crispy}} -->
+
+       {% for fm in form %}
+       {{fm.label_tag}}
+       {{fm}}
+       {{ fm.errors| striptags}}
+       {% endfor %}
+        <input style='width:100%;display: flex; flex-direction: column; align-items: center;' class='btn btn-primary mt-4' type='submit' value='CHANGE'>
+
+    </form>
+    
+
+</div>
+</div>
+{% endblock %}
